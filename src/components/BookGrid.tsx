@@ -17,44 +17,37 @@ interface BookGridProps {
       onBookClick(book);
     };
   
-    const itemsPerPage = 10; // Number of items to display per page
+    const itemsPerPage = 10;
     const totalPages = Math.ceil(books.length / itemsPerPage);
   
-    // State to keep track of the current page
     const [currentPage, setCurrentPage] = useState(1);
   
-    // State to store filter values
     const [titleFilter, setTitleFilter] = useState('');
     const [authorFilter, setAuthorFilter] = useState('');
   
-    // Calculate the start and end index of the books to display based on the current page
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
   
-    // Filter the books based on the filter values
     const filteredBooks = books.filter(
       (book) =>
         book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
         book.author.toLowerCase().includes(authorFilter.toLowerCase())
     );
   
-    // Get the books to display on the current page
     const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
   
-    // Handle page change
     const handlePageChange = (pageNumber: number) => {
       setCurrentPage(pageNumber);
     };
   
-    // Handle filter changes
     const handleTitleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setTitleFilter(event.target.value);
-      setCurrentPage(1); // Reset the current page when filter changes
+      setCurrentPage(1);
     };
   
     const handleAuthorFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setAuthorFilter(event.target.value);
-      setCurrentPage(1); // Reset the current page when filter changes
+      setCurrentPage(1);
     };
   
     return (
